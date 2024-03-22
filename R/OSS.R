@@ -26,8 +26,13 @@
 #' \url{https://projecteuclid.org/journals/annals-of-applied-statistics/volume-15/issue-3/Orthogonal-subsampling-for-big-data-linear-regression/10.1214/21-AOAS1462.short?tab=ArticleLink}.
 #'
 #' @export
+
+scale_neg_pos_1 <- function(X) {
+  apply(X, 2, function(.col) (( (.col - min(.col)) / (max(.col)-min(.col)) ) *2 ) -1 )
+}
+        
 OSS <- function(n, X){
-  X <- scale(as.matrix(X)) # need scale
+  X <- scale_neg_pos_1(as.matrix(X)) # need scale
   attributes(X) <- attributes(X)["dim"]
   subindex <- rcppOSS(X = X, n = n)
   return(subindex)
@@ -53,7 +58,7 @@ OSS <- function(n, X){
 # X <- as.matrix(data_numeric_regression)
 # myR_OSS(X, 100)
 myArma_OSS <- function(n, X){
-  X <- scale(as.matrix(X))
+  X <- scale_neg_pos_1(as.matrix(X))
   attributes(X) <- attributes(X)["dim"]
   as.vector(armaOSS(X, n))
 }
@@ -129,7 +134,7 @@ rbottom_t_index <- function(loss, t){
 # X <- as.matrix(data_numeric_regression)
 # myR_OSS(X, 100)
 myR_OSS <- function(n, X){
-  X <- scale(as.matrix(X))
+  X <- scale_neg_pos_1(as.matrix(X))
   attributes(X) <- attributes(X)["dim"]
   N <- nrow(X)
 
