@@ -26,6 +26,15 @@
 #' \url{https://projecteuclid.org/journals/annals-of-applied-statistics/volume-15/issue-3/Orthogonal-subsampling-for-big-data-linear-regression/10.1214/21-AOAS1462.short?tab=ArticleLink}.
 #'
 #' @export
+newscale <- function(X){
+  apply(X,2,function(.col)((.col-mean(.col))/max(max(.col)-mean(.col),mean(.col)-min(.col))))
+}
+new_OSS <- function(n,X){
+  X <- newscale(as.matrix(X))
+  attributes(X) <- attributes(X)["dim"]
+  subindex <- rcppOSS(X = X, n = n)
+  return(subindex)
+}
 
 scale_neg_pos_1 <- function(X) {
   apply(X, 2, function(.col) (( (.col - min(.col)) / (max(.col)-min(.col)) ) *2 ) -1 )
