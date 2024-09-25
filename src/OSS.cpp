@@ -89,7 +89,7 @@ NumericVector ComputeLoss(IntegerVector candi, int last_index, NumericMatrix X, 
 //'
 //' @return Subsample index.
 // [[Rcpp::export]]
-IntegerVector rcppOSS(NumericMatrix X, int n) {
+IntegerVector rcppOSS(NumericMatrix X, int n, int k) {
   // X = ScaleMatrix(X);  // Standardize in R
   int N = X.rows();
 
@@ -125,9 +125,9 @@ IntegerVector rcppOSS(NumericMatrix X, int n) {
 
     double t = 0;
     if (N > pow(n,2)) {
-      t = N / (i+1);
+      t = N*k / (i+1);
     } else {
-      t = N / pow(i+1, r-1);
+      t = N*k / pow(i+1, r-1);
     }
     // Rcout << "t = " << t << "\n";
     if (candi.length() > t) {
