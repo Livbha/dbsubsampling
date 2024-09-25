@@ -131,7 +131,7 @@ IntegerVector rcppOSS(NumericMatrix X, int n,int k) {
     }
     // Rcout << "t = " << t << "\n";
     if (candi.length() > t*k) {
-      IntegerVector remain = bottom_t_index(loss, floor(t));
+      IntegerVector remain = bottom_t_index(loss, floor(t*k));
       //   Rcout << "length of remain: " << remain.length() << "\n";
       //   Rcout << "remain:" << remain << "\n";
       candi = candi[remain];
