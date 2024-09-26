@@ -28,7 +28,7 @@
 #' @export
 
 scale_neg_pos_1 <- function(X) {
- apply(X,2,function(.col)((.col-mean(.col))/max(max(.col)-mean(.col),mean(.col)-min(.col))))
+ apply(X, 2, function(.col) (( (.col - min(.col)) / (max(.col)-min(.col)) ) *2 ) -1 )
 }
         
 OSS <- function(n, X){
