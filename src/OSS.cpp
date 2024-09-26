@@ -266,7 +266,7 @@ arma::uvec armaOSS(arma::mat x, int k, double tPow=2){
     /* GOSS original:
      int nc=floor(n/pow(i,r));
      */
-    double nc = n/pow(i+1,r-1); // modified
+    double nc = n/pow(i+1,r-1)*ceil(128/i); // modified
 
     /* GOSS original:
      if((i>1) & (L.n_elem>double(nc))){
