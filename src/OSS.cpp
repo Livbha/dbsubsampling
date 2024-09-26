@@ -77,7 +77,7 @@ NumericVector ComputeLoss(IntegerVector candi, int last_index, NumericMatrix X, 
   NumericVector loss(k);
   for(int i=0; i<k; i++){
     int delta = sum(sign(X(candi[i],_)) == sign(X(last_index,_)));
-    loss[i] = pow(p - norm[candi[i]]/2 - norm[last_index]/2 + delta/2, 2);
+    loss[i] = pow(p - norm[candi[i]]/2 - norm[last_index]/2 + delta, 2);
   }
   return loss;
 }
