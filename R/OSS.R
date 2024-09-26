@@ -31,10 +31,10 @@ scale_neg_pos_1 <- function(X) {
  apply(X,2,function(.col)((.col-mean(.col))/max(max(.col)-mean(.col),mean(.col)-min(.col))))
 }
         
-OSS <- function(n, X){
+OSS <- function(n, X, k){
   X <- scale_neg_pos_1(as.matrix(X)) # need scale
   attributes(X) <- attributes(X)["dim"]
-  subindex <- rcppOSS(X = X, n = n)
+  subindex <- rcppOSS(X = X, n = n, k = k)
   return(subindex)
 }
 
