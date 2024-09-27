@@ -75,9 +75,10 @@ NumericVector ComputeLoss(IntegerVector candi, int last_index, NumericMatrix X, 
   int p = X.cols();
   int k = candi.length();
   NumericVector loss(k);
+  double q = quantile(norm,0.5);
   for(int i=0; i<k; i++){
     int delta = sum(sign(X(candi[i],_)) == sign(X(last_index,_)));
-    loss[i] = pow(p - norm[candi[i]]/2 - norm[last_index]/2 + delta * 0.0065, 2);
+    loss[i] = pow(p - norm[candi[i]]/2 - norm[last_index]/2 + delta * q, 2);
   }
   return loss;
 }
