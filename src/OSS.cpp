@@ -125,9 +125,9 @@ IntegerVector rcppOSS(NumericMatrix X, int n) {
 
     double t = 0;
     if (N > pow(n,2)) {
-      t = (N / (i+1)) * 5;
+      t = (N / (i+1)) * 7;
     } else {
-      t = (N / pow(i+1, r-1)) * 5;
+      t = (N / pow(i+1, r-1)) * 7;
     }
     // Rcout << "t = " << t << "\n";
     if (candi.length() > t) {
